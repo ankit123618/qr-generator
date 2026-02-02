@@ -1,0 +1,40 @@
+body {
+    background: #0b0b0b;
+    font-family: Arial, sans-serif;
+    color: white;
+}
+
+.container {
+    width: 350px;
+    margin: 80px auto;
+    text-align: center;
+    padding: 20px;
+    background: #111;
+    border-radius: 10px;
+}
+
+input {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    background: #000;
+    color: white;
+    border: 1px solid red;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px 20px;
+    background: red;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#qrBox {
+    margin-top: 20px;
+    background: #111;
+    padding: 10px;
+}
+
