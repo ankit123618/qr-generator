@@ -5,7 +5,7 @@ body {
 }
 
 .container {
-    width: 350px;
+    width: 360px;
     margin: 80px auto;
     text-align: center;
     padding: 20px;
@@ -25,6 +25,7 @@ input {
 
 button {
     padding: 10px 20px;
+    margin: 8px;
     background: red;
     border: none;
     color: white;
@@ -34,7 +35,4 @@ button {
 
 #qrBox {
     margin-top: 20px;
-    background: #111;
-    padding: 10px;
 }
-
