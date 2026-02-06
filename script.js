@@ -1,41 +1,56 @@
+let qrCanvas = null;
+
 function generateQR() {
     let url = document.getElementById("urlInput").value.trim();
     const qrBox = document.getElementById("qrBox");
+    const downloadBtn = document.getElementById("downloadBtn");
 
     qrBox.innerHTML = "";
+    downloadBtn.style.display = "none";
+    qrCanvas = null;
 
     if (!url) {
         alert("Enter a URL");
         return;
     }
 
-    // FORCE valid URL
     if (!url.startsWith("http://") && !url.startsWith("https://")) {
         url = "https://" + url;
     }
 
-    // Create wrapper for quiet zone
-    const qrWrapper = document.createElement("div");
-    qrWrapper.style.background = "white";
-    qrWrapper.style.padding = "12px";
-    qrWrapper.style.display = "inline-block";
+    // Bigger quiet zone for watches
+    const wrapper = document.createElement("div");
+    wrapper.style.background = "white";
+    wrapper.style.padding = "20px";
+    wrapper.style.display = "inline-block";
 
-    qrBox.appendChild(qrWrapper);
+    qrBox.appendChild(wrapper);
 
-    new QRCode(qrWrapper, {
+    const qrDiv = document.createElement("div");
+    wrapper.appendChild(qrDiv);
+
+    new QRCode(qrDiv, {
         text: url,
-        width: 256,
-        height: 256,
+        width: 100,
+        height: 100,
         colorDark: "#000000",
         colorLight: "#ffffff",
         correctLevel: QRCode.CorrectLevel.H
     });
-}
-setTimeout(() => {
-  const img = qrBox.querySelector("img");
-  img.download = "qr.png";
-}, 300);
-if (!url.startsWith("http")) {
-    url = "https://" + url;
+
+    setTimeout(() => {
+        qrCanvas = qrDiv.querySelector("canvas");
+        if (qrCanvas) {
+            downloadBtn.style.display = "inline-block";
+        }
+    }, 400);
 }
 
+function downloadQR() {
+    if (!qrCanvas) return;
+
+    const link = document.createElement("a");
+    link.download = "watch-qr.png";
+    link.href = qrCanvas.toDataURL("image/png");
+    link.click();
+}
